@@ -1,4 +1,5 @@
 {
+    "$schema": "https://raw.githubusercontent.com/F5Networks/f5-appsvcs-extension/master/schema/latest/as3-schema.json",
     "class": "AS3",
     "action": "deploy",
     "persist": true,
@@ -9,6 +10,7 @@
         "label": "Sample 1",
         "remark": "Simple HTTP Service with Round-Robin Load Balancing",
         "Simon_01": {
+        
             "class": "Tenant",
             "Simon_App": {
                 "class": "Application",
@@ -26,7 +28,7 @@
                     ],
                     "members": [
                         {
-                            "servicePort": 80,
+                            "servicePort": 8080,
                             "serverAddresses": [
                                 "192.0.1.100",
                                 "192.0.1.110"
