@@ -1,0 +1,65 @@
+{
+    "class": "AS3",
+    "action": "deploy",
+    "persist": true,
+    "declaration": {
+        "class": "ADC",
+        "schemaVersion": "3.0.0",
+        "id": "urn:uuid:33045210-3ab8-4636-9b2a-c98d22ab915d",
+        "label": "Sample 1",
+        "remark": "Simple HTTP Service with Round-Robin Load Balancing",
+        "Simon_01": {
+            "class": "Tenant",
+            "Simon_App": {
+                "class": "Application",
+                "service": {
+                    "class": "Service_HTTP",
+                    "virtualAddresses": [
+                        "10.2.1.100"
+                    ],
+                    "pool": "simon_pool"
+                },
+                "simon_pool": {
+                    "class": "Pool",
+                    "monitors": [
+                        "http"
+                    ],
+                    "members": [
+                        {
+                            "servicePort": 80,
+                            "serverAddresses": [
+                                "192.0.1.100",
+                                "192.0.1.110"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "Simon_New_App": {
+                "class": "Application",
+                "service": {
+                    "class": "Service_HTTP",
+                    "virtualAddresses": [
+                        "10.2.1.101"
+                    ],
+                    "pool": "simon_pool"
+                },
+                "simon_pool": {
+                    "class": "Pool",
+                    "monitors": [
+                        "http"
+                    ],
+                    "members": [
+                        {
+                            "servicePort": 80,
+                            "serverAddresses": [
+                                "192.0.1.100",
+                                "192.0.1.110"
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
